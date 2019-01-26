@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  db:
+    image: mongo
+    networks:
+      mongowebnetworkdockercompose:
+        ipv4_address: 172.172.0.103
+
+
+  b:
+    build: ./src/mongoweb
+#    restart: always
+    depends_on:
+      - db
+
+    ports:
+      - 8228:8228
+    networks:
+      mongowebnetworkdockercompose:
+        ipv4_address: 172.172.0.102
+    environment:
+      MONGODB_ADDR: mongodb://172.172.0.103:27017
+
+  f:
+    build: ./vue-admin
+#    depends_on:
+#      - b
+    ports:
+      - 80:80
+    networks:
+      mongowebnetworkdockercompose:
+        ipv4_address: 172.172.0.101
+
+
+networks:
+  mongowebnetworkdockercompose:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.172.0.0/16
+

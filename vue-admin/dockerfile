@@ -1,0 +1,5 @@
+FROM nginx
+
+COPY mongoweb/ /usr/share/nginx/html/mongoweb/
+
+

@@ -1,0 +1,11 @@
+FROM golang:1.10
+
+WORKDIR /go/src/mongoweb
+COPY . .
+
+RUN go install -v ./...
+
+CMD ["mongoweb"]
+
+
+
