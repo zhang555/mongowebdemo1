@@ -32,7 +32,6 @@ user2 | user2
 ### Backend
 * Multiple roles, different permissions for each role
 * CRUD operations for MongoDB
-*
 
 
 
